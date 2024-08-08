@@ -34,7 +34,8 @@ public class Main {
     public static void main(String[] args) {
         
         // Simple print statement using args
-        if (args.length > 3) {
+        // pass in 3 arguments to see the output
+        if (args.length > 2) {
             String firstName = args[0];
             String lastName = args[1];
             int age = Integer.parseInt(args[2]);
