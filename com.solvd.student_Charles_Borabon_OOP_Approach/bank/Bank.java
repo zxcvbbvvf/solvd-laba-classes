@@ -19,7 +19,8 @@ public class Bank {
         balance -= amount;
     }
 
-    public void display() {
-        System.out.println("This is the main bank class. Not much to see here.");
+    @Override
+    public String toString() {
+        return "This is the main bank class. Not much to see here.";
     }
 }

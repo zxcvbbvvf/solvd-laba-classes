@@ -15,11 +15,11 @@ public class BankCustomer extends Bank {
     }
 
     @Override
-    public void display() {
-        System.out.println("Customer Name: " + customerName);
-        System.out.println("Customer Address: " + customerAddress);
-        System.out.println("Customer Phone: " + customerPhone);
-        System.out.println("Customer Email: " + customerEmail);
-        System.out.println("Current Balance: " + balance);
+    public String toString() {
+        return "Customer Name: " + customerName + "\n"
+             + "Customer Address: " + customerAddress + "\n"
+             + "Customer Phone: " + customerPhone + "\n"
+             + "Customer Email: " + customerEmail + "\n"
+             + "Current Balance: " + balance + "\n";
     }
 }
