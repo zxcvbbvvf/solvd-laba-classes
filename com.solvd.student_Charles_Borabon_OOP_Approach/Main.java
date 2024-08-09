@@ -1,5 +1,7 @@
 import bank.Bank;
 import bank.BankCustomer;
+import management.Employee;
+import management.Management;
 import zoo.Zoo;
 import zoo.ZooAnimal;
 
@@ -7,10 +9,6 @@ public class Main {
     public static void main(String[] args) {
         // bank package test
         Bank bank = new Bank(123456, "John Doe", 1000.00);
-        System.out.println(bank.toString());
-        bank.deposit(500.00);
-        System.out.println(bank.toString());
-        bank.withdraw(200.00);
         System.out.println(bank.toString());
         System.out.println("--------------------");
 
@@ -33,5 +31,16 @@ public class Main {
         System.out.println("Are the two ZooAnimal obejcts the same? " + zooAnimal.equals(zooAnimal2));
         System.out.println("Hash code for zooAnimal: " + zooAnimal.hashCode());
         System.out.println("Hash code for zooAnimal2: " + zooAnimal2.hashCode());
+        System.out.println("--------------------");
+
+        // management package test
+        Management management = new Management("John Doe");
+        System.out.println(management.toString());
+        System.out.println("--------------------");
+
+        Employee employee = new Employee("John Doe", "HR", "Manager");
+        Employee employee2 = new Employee("Jane Doe", "HR", "Manager");
+        System.out.println(employee.toString());
+        System.out.println(employee2.toString());
     }
 }
