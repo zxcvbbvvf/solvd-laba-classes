@@ -9,7 +9,8 @@ public class Zoo {
         this.animalType = animalType;
     }
 
-    public void printZoo() {
-        System.out.println("This is the main zoo class.");
+    @Override
+    public String toString() {
+        return "This is the main zoo class.";
     }
 }
