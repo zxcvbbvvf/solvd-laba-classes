@@ -12,11 +12,11 @@ public class Bank {
     }
 
     public void deposit(double amount) {
-        balance += amount;
+        this.balance += amount;
     }
 
     public void withdraw(double amount) {
-        balance -= amount;
+        this.balance -= amount;
     }
 
     @Override

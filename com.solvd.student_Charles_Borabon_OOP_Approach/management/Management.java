@@ -16,6 +16,6 @@ public class Management {
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 }

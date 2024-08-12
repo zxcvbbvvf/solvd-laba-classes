@@ -12,9 +12,9 @@ public class Employee extends Management {
 
     @Override
     public String toString() {
-        return "ID: " + id + "\n"
-             + "Name: " + name + "\n"
-             + "Department: " + department + "\n"
-             + "Position: " + position;
+        return "ID: " + this.id + "\n"
+             + "Name: " + this.name + "\n"
+             + "Department: " + this.department + "\n"
+             + "Position: " + this.position;
     }
 }

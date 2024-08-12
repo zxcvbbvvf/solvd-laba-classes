@@ -10,9 +10,9 @@ public class ZooAnimal extends Zoo {
 
     @Override
     public String toString() {
-        return "Enclousure number: " + enclousureNumber + "\n"
-             + "Animal type: " + animalType + "\n"
-             + "Sound the animal makes: " + sound;
+        return "Enclousure number: " + this.enclousureNumber + "\n"
+             + "Animal type: " + this.animalType + "\n"
+             + "Sound the animal makes: " + this.sound;
     }
 
     // override hashCode and equals methods
@@ -20,9 +20,9 @@ public class ZooAnimal extends Zoo {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + enclousureNumber;
-        result = prime * result + ((animalType == null) ? 0 : animalType.hashCode());
-        result = prime * result + ((sound == null) ? 0 : sound.hashCode());
+        result = prime * result + this.enclousureNumber;
+        result = prime * result + ((this.animalType == null) ? 0 : this.animalType.hashCode());
+        result = prime * result + ((this.sound == null) ? 0 : this.sound.hashCode());
         return result;
     }
 
@@ -38,21 +38,21 @@ public class ZooAnimal extends Zoo {
             return false;
         }
         ZooAnimal other = (ZooAnimal) obj;
-        if (enclousureNumber != other.enclousureNumber) {
+        if (this.enclousureNumber != other.enclousureNumber) {
             return false;
         }
         if (animalType == null) {
             if (other.animalType != null) {
                 return false;
             }
-        } else if (!animalType.equals(other.animalType)) {
+        } else if (!this.animalType.equals(other.animalType)) {
             return false;
         }
-        if (sound == null) {
+        if (this.sound == null) {
             if (other.sound != null) {
                 return false;
             }
-        } else if (!sound.equals(other.sound)) {
+        } else if (!this.sound.equals(other.sound)) {
             return false;
         }
         return true;

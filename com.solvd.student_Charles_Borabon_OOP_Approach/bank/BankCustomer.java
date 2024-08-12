@@ -16,10 +16,10 @@ public class BankCustomer extends Bank {
 
     @Override
     public String toString() {
-        return "Customer Name: " + customerName + "\n"
-             + "Customer Address: " + customerAddress + "\n"
-             + "Customer Phone: " + customerPhone + "\n"
-             + "Customer Email: " + customerEmail + "\n"
-             + "Current Balance: " + balance + "\n";
+        return "Customer Name: " + this.customerName + "\n"
+             + "Customer Address: " + this.customerAddress + "\n"
+             + "Customer Phone: " + this.customerPhone + "\n"
+             + "Customer Email: " + this.customerEmail + "\n"
+             + "Current Balance: " + this.balance + "\n";
     }
 }
