@@ -1,4 +1,3 @@
-import bank.Bank;
 import bank.BankCustomer;
 import management.Employee;
 import management.Management;
@@ -8,16 +7,14 @@ import zoo.ZooAnimal;
 public class Main {
     public static void main(String[] args) {
         // bank package test
-        Bank bank = new Bank(123456, "John Doe", 1000.00);
-        System.out.println(bank.toString());
-        System.out.println("--------------------");
-
-        BankCustomer customer = new BankCustomer(123456, "John Doe", 1000.00, "Jane Doe", "1234 Elm St", "555-555-5555", "jane@email.com");
+        BankCustomer customer = new BankCustomer(123456, "John Doe", 1000.00, "Jane Doe", "1234 Elm St", "555-555-5555", "joe@email.com");
+        BankCustomer customer2 = new BankCustomer(123456, "Jane Doe", 1000.00, "Jane Doe", "1234 Elm St", "555-555-5555", "jane@email.com");
         System.out.println(customer.toString());
         customer.deposit(500.00);
         System.out.println(customer.toString());
         customer.withdraw(200.00);
         System.out.println(customer.toString());
+        System.out.println("Number of customers: " + BankCustomer.getCustomerCount());
         System.out.println("--------------------");
 
         // zoo package test
