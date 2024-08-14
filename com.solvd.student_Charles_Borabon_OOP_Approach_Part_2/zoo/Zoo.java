@@ -1,12 +1,26 @@
 package zoo;
 
-public class Zoo {
-    int enclousureNumber;
-    String animalType;
+public class Zoo implements ZooMethods {
+    private int enclousureNumber;
+    static int enclousureCount = 1;
+    static int zooCount = 0;
 
-    public Zoo(int enclousureNumber, String animalType) {
-        this.enclousureNumber = enclousureNumber;
-        this.animalType = animalType;
+    public Zoo() {
+        if (enclousureCount > UPPER_BOUND) {
+            throw new IllegalArgumentException("The number of enclousures has reached the maximum.");
+        }
+        this.enclousureNumber = enclousureCount;
+        enclousureCount++;
+        zooCount++;
+    }
+
+    @Override
+    public int getEnclousureNumber() {
+        return this.enclousureNumber;
+    }
+
+    public static int getZooCount() {
+        return zooCount;
     }
 
     @Override
