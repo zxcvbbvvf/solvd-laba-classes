@@ -18,14 +18,18 @@ public class Main {
         System.out.println("--------------------");
 
         // zoo package test
-        Zoo zoo = new Zoo(1, "Lion");
+        Zoo zoo = new Zoo();
         System.out.println(zoo.toString());
         System.out.println("--------------------");
 
-        ZooAnimal zooAnimal = new ZooAnimal(1, "Lion", "Roar");
-        ZooAnimal zooAnimal2 = new ZooAnimal(1, "Lion", "Roar");
+        ZooAnimal zooAnimal = new ZooAnimal("Lion", "Roar", 3);
+        ZooAnimal zooAnimal2 = new ZooAnimal("Moose", "Moo", 2);
         System.out.println(zooAnimal.toString());
-        System.out.println("Are the two ZooAnimal obejcts the same? " + zooAnimal.equals(zooAnimal2));
+        System.out.println();
+        System.out.println(zooAnimal2.toString());
+        System.out.println();
+        System.out.println("Number of animals: " + ZooAnimal.getAnimalCount());
+        System.out.println("Are the two ZooAnimal objects the same? " + zooAnimal.equals(zooAnimal2));
         System.out.println("Hash code for zooAnimal: " + zooAnimal.hashCode());
         System.out.println("Hash code for zooAnimal2: " + zooAnimal2.hashCode());
         System.out.println("--------------------");
@@ -38,6 +42,10 @@ public class Main {
         Employee employee = new Employee("John Doe", "HR", "Manager");
         Employee employee2 = new Employee("Jane Doe", "HR", "Manager");
         System.out.println(employee.toString());
+        System.out.println();
         System.out.println(employee2.toString());
+        System.out.println();
+        System.out.println("Number of management objects: " + Management.getManagementCount());
+        System.out.println("Number of employees: " + Employee.getEmployeeCount());
     }
 }
