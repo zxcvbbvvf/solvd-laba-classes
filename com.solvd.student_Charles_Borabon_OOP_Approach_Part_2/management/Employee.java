@@ -1,6 +1,6 @@
 package management;
 
-public class Employee extends Management implements EmployeeMethods {
+public final class Employee extends Management implements EmployeeMethods {
     private String department;
     private String position;
     static int employeeCount = 0;

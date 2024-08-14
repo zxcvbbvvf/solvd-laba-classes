@@ -1,6 +1,6 @@
 package zoo;
 
-public class ZooAnimal extends Zoo implements ZooAnimalMethods {
+public final class ZooAnimal extends Zoo implements ZooAnimalMethods {
     private final String sound;
     private final String animalType;
     private int animalTypeCount = 0;
