@@ -26,6 +26,7 @@ public final class BankCustomer extends Bank implements BankCustomerMethods {
     @Override
     public void deposit(double amount) {
         this.balance += amount;
+        System.out.println("Ammount deposited: " + amount);
     }
 
     @Override
@@ -34,6 +35,7 @@ public final class BankCustomer extends Bank implements BankCustomerMethods {
             System.out.println("Insufficient funds.");
         } else {
             this.balance -= amount;
+            System.out.println("Ammount withdrawn: " + amount);
         }
     }
 
