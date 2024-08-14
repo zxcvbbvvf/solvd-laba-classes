@@ -24,9 +24,20 @@ public final class BankCustomer extends Bank implements BankCustomerMethods {
     }
 
     @Override
+    public void transfer(double amount, BankCustomer toAccount) {
+        if (this.balance - amount < 0) {
+            System.out.println("Insufficient funds.");
+        } else {
+            this.withdraw(amount);;
+            toAccount.deposit(amount);
+            System.out.println("Ammount transferred from " + this.getAccountNum() + " to " + toAccount.getAccountNum() + ": " + amount);
+        }
+    }
+
+    @Override
     public void deposit(double amount) {
         this.balance += amount;
-        System.out.println("Ammount deposited: " + amount);
+        System.out.println("Ammount deposited to " + this.getAccountNum() + ": " + amount);
     }
 
     @Override
@@ -35,7 +46,7 @@ public final class BankCustomer extends Bank implements BankCustomerMethods {
             System.out.println("Insufficient funds.");
         } else {
             this.balance -= amount;
-            System.out.println("Ammount withdrawn: " + amount);
+            System.out.println("Ammount withdrawn from " + this.getAccountNum() + ": " + amount);
         }
     }
 
@@ -56,7 +67,7 @@ public final class BankCustomer extends Bank implements BankCustomerMethods {
 
     @Override
     public String toString() {
-        return "Customer ID" + this.getAccountNum() + "\n"
+        return "Customer ID: " + this.getAccountNum() + "\n"
              + "Customer Name: " + this.getAccountName() + "\n"
              + "Customer Balance: " + this.getBalance() + "\n";
     }
