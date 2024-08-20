@@ -1,0 +1,4 @@
+Array index is out of bounds
+Cannot divide by zero
+String is null
+Array size is negative
