@@ -18,12 +18,15 @@ public class Main {
 
         // Add elements to list and print
         list.add("Hello");
+        list.add("Hello");
         list.add("World");
+        list.add("Earth");
         System.out.println("List: " + list);
         System.out.println("--------------------");
 
         // Add elements to set and print
         set.add(4);
+        set.add(4); // Will not be added due to duplicate
         set.add(2);
         set.add(3);
         set.add(1);
