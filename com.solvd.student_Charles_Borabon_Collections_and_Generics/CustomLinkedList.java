@@ -56,6 +56,16 @@ public class CustomLinkedList<T> {
         }
     }
 
+    // Get the head of the linked list
+    public T getHead() {
+        return this.head.data;
+    }
+
+    // Get the tail of the linked list
+    public T getTail() {
+        return this.tail.data;
+    }
+
     // Clear Linked List
     public void clear() {
         this.head = null;
