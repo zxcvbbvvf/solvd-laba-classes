@@ -1,6 +1,6 @@
 public class CustomLinkedList<T> {
     // Helper class to represent a node in the linked list
-    public class node<T> {
+    public class node<K> {
         T data;
         node<T> next;
         node<T> prev;
