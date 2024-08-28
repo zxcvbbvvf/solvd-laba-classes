@@ -14,4 +14,5 @@ public class Main {
         Set<Integer> set = new HashSet<>();
         Queue<Integer> queue = new PriorityQueue<>();
         Map<String, Integer> map = new HashMap<>();
+        CustomLinkedList<Integer> linkedList = new CustomLinkedList<>();
     }
