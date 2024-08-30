@@ -20,7 +20,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>org.Charles.Borabon.Main</mainClass>
+                            <mainClass>org.CharlesBorabon.JavaBasics.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
