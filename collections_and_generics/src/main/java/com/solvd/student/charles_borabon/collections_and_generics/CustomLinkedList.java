@@ -1,4 +1,4 @@
-package org.CharlesBorabon.CollectionsAndGenerics;
+package com.solvd.student.charles_borabon.collections_and_generics;
 
 public class CustomLinkedList<T> {
     // Helper class to represent a node in the linked list

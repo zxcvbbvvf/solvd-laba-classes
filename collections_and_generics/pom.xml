@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.CharlesBorabon.CollectionsAndGenerics</groupId>
-    <artifactId>com.solvd.student_Charles_Borabon_Collections_and_Generics_Maven</artifactId>
+    <groupId>com.solvd.student.charles_borabon</groupId>
+    <artifactId>collections_and_generics</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <exec.mainClass>org.CharlesBorabon.CollectionsAndGenerics.ComSolvdStudent_Charles_Borabon_Collections_and_Generics_Maven</exec.mainClass>
+        <exec.mainClass>com.solvd.student.charles_borabon.collections_and_generics.Main</exec.mainClass>
     </properties>
     <build>
         <plugins>

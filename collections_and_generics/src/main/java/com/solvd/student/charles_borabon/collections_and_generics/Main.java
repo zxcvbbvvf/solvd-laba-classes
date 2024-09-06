@@ -1,4 +1,4 @@
-package org.CharlesBorabon.CollectionsAndGenerics;
+package com.solvd.student.charles_borabon.collections_and_generics;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
