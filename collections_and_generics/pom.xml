@@ -20,7 +20,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>org.CharlesBorabon.CollectionsAndGenerics.Main</mainClass>
+                            <mainClass>com.solvd.student.charles_borabon.collections_and_generics.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
