@@ -28,7 +28,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>org.CharlesBorabon.TryAndCatch.Main</mainClass>
+                            <mainClass>com.solvd.student.charles_borabon.exceptions.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -40,7 +40,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.CharlesBorabon.TryAndCatch.Main</mainClass>
+                            <mainClass>com.solvd.student.charles_borabon.exceptions.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
