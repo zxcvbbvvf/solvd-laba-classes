@@ -1,7 +1,7 @@
-package com.sovld.student.charles_borabon.oop_approach;
-import com.sovld.student.charles_borabon.oop_approach.Employee_Management.Director;
-import com.sovld.student.charles_borabon.oop_approach.Employee_Management.Employee;
-import com.sovld.student.charles_borabon.oop_approach.Employee_Management.Manager;
+package com.solvd.student.charles_borabon.oop_approach;
+import com.solvd.student.charles_borabon.oop_approach.Employee_Management.Director;
+import com.solvd.student.charles_borabon.oop_approach.Employee_Management.Employee;
+import com.solvd.student.charles_borabon.oop_approach.Employee_Management.Manager;
 
 public class Main {
 
