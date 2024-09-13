@@ -1,6 +1,6 @@
 package com.solvd.student.charles_borabon.collections_and_generics.Employee_Management;
 
-public class CustomLInkedList<T> {
+public class CustomLinkedList<T> {
     private Node<T> head;
 
     // Inner class to represent each node in the list
