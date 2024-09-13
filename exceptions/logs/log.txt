@@ -1,0 +1,8 @@
+2024-09-13 10:24:42 [main] INFO  com.solvd.student.charles_borabon.exceptoins.Main - Application started.
+2024-09-13 10:24:42 [main] INFO  com.solvd.student.charles_borabon.exceptoins.Main - Employee 1234 promoted successfully.
+2024-09-13 10:24:42 [main] ERROR com.solvd.student.charles_borabon.exceptoins.Main - Critical error while processing employee data: Salary cannot be negative.
+com.solvd.student.charles_borabon.exceptoins.InvalidSalaryException: Salary cannot be negative.
+	at com.solvd.student.charles_borabon.exceptoins.Main.handleEmployeeData(Main.java:84) ~[classes/:?]
+	at com.solvd.student.charles_borabon.exceptoins.Main.main(Main.java:48) [classes/:?]
+2024-09-13 10:24:43 [main] ERROR com.solvd.student.charles_borabon.exceptoins.Main - File not found: employeeData.txt (The system cannot find the file specified)
+2024-09-13 10:24:43 [main] INFO  com.solvd.student.charles_borabon.exceptoins.Main - Application finished.
