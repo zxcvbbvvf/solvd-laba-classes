@@ -1,6 +1,8 @@
-2024-09-13 10:50:40 [main] INFO  com.solvd.student.charles_borabon.exceptions.Main - Handling employee...
-2024-09-13 10:50:40 [main] ERROR com.solvd.student.charles_borabon.exceptions.Main - Exception occurred: Employee ID is not valid.
-2024-09-13 10:50:40 [main] INFO  com.solvd.student.charles_borabon.exceptions.Main - Handling transfer...
-2024-09-13 10:50:40 [main] INFO  com.solvd.student.charles_borabon.exceptions.Main - Resource closed
-2024-09-13 10:50:40 [main] ERROR com.solvd.student.charles_borabon.exceptions.Main - Exception in transfer: Employee cannot be transferred.
-2024-09-13 10:50:40 [main] INFO  com.solvd.student.charles_borabon.exceptions.Main - Application finished
+2024-09-13 11:14:41 [main] ERROR com.solvd.student.charles_borabon.exceptions.Main - Exception caught: Salary cannot be negative.
+com.solvd.student.charles_borabon.exceptions.Main$InvalidSalaryException: Salary cannot be negative.
+	at com.solvd.student.charles_borabon.exceptions.Main.validateSalary(Main.java:81) ~[classes/:?]
+	at com.solvd.student.charles_borabon.exceptions.Main.main(Main.java:61) [classes/:?]
+2024-09-13 11:14:41 [main] ERROR com.solvd.student.charles_borabon.exceptions.Main - Exception in resource management: Error while closing resource.
+com.solvd.student.charles_borabon.exceptions.Main$ResourceCloseException: Error while closing resource.
+	at com.solvd.student.charles_borabon.exceptions.Main$Resource.close(Main.java:101) ~[classes/:?]
+	at com.solvd.student.charles_borabon.exceptions.Main.main(Main.java:73) [classes/:?]

@@ -2,54 +2,103 @@ package com.solvd.student.charles_borabon.exceptions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.solvd.student.charles_borabon.exceptions.Employee_Management.CustomExceptions;
+import com.solvd.student.charles_borabon.exceptions.Employee_Management.Director;
+import com.solvd.student.charles_borabon.exceptions.Employee_Management.Employee;
+import com.solvd.student.charles_borabon.exceptions.Employee_Management.Intern;
+import com.solvd.student.charles_borabon.exceptions.Employee_Management.Manager;
 
 public class Main {
+
+    // Custom Exception classes
+    public static class InvalidSalaryException extends Exception {
+        public InvalidSalaryException(String message) {
+            super(message);
+        }
+    }
+    
+    public static class InvalidDepartmentException extends Exception {
+        public InvalidDepartmentException(String message) {
+            super(message);
+        }
+    }
+    
+    public static class InvalidEmployeeIDException extends Exception {
+        public InvalidEmployeeIDException(String message) {
+            super(message);
+        }
+    }
+    
+    public static class InvalidWorkHoursException extends Exception {
+        public InvalidWorkHoursException(String message) {
+            super(message);
+        }
+    }
+    
+    public static class ResourceCloseException extends Exception {
+        public ResourceCloseException(String message) {
+            super(message);
+        }
+    }
+
     private static final Logger logger = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
         try {
-            handleEmployee();
-            handlePromotion();
-        } catch (CustomExceptions.InvalidEmployeeException | CustomExceptions.InvalidPromotionException e) {
-            logger.error("Exception occurred: " + e.getMessage());
-        }
+            Employee emp1 = new Manager("Alice", 1001, 50000, "HR");
+            Employee emp2 = new Director("Bob", 1002, 80000, "IT", 10000);
 
-        // Handle exceptions using try-with-resources
-        try (AutoCloseableResource resource = new AutoCloseableResource()) {
-            handleTransfer();
-        } catch (CustomExceptions.TransferNotAllowedException e) {
-            logger.error("Exception in transfer: " + e.getMessage());
+            emp1.work(); // Manager work method
+            emp2.work(); // Director work method
+
+            // Test final class Intern
+            Intern intern = new Intern("Charlie", 1003, 20000);
+            intern.work();
+
+            // Test static method and block
+            System.out.println("Number of managers: " + Manager.getManagerCount());
+
+            // Test custom exceptions
+            validateSalary(-1000);  // Will throw InvalidSalaryException
+            validateDepartment("InvalidDept");  // Will throw InvalidDepartmentException
+
+        } catch (InvalidSalaryException | InvalidDepartmentException e) {
+            logger.error("Exception caught: " + e.getMessage(), e);
         } catch (Exception e) {
-            logger.error("General exception: " + e.getMessage());
+            logger.error("General exception: " + e.getMessage(), e);
         }
 
-        logger.info("Application finished");
+        // Try-with-resources demonstration
+        try (Resource resource = new Resource()) {
+            resource.useResource();
+        } catch (Exception e) {
+            logger.error("Exception in resource management: " + e.getMessage(), e);
+        }
     }
 
-    private static void handleEmployee() throws  CustomExceptions.InvalidEmployeeException {
-        logger.info("Handling employee...");
-        // Simulate invalid employee handling
-        throw new CustomExceptions().new InvalidEmployeeException("Employee ID is not valid.");
+    // Method to validate salary and throw exception if invalid
+    public static void validateSalary(int salary) throws InvalidSalaryException {
+        if (salary < 0) {
+            throw new InvalidSalaryException("Salary cannot be negative.");
+        }
     }
 
-    private static void handlePromotion() throws CustomExceptions.InvalidPromotionException {
-        logger.info("Handling promotion...");
-        // Simulate invalid promotion handling
-        throw new CustomExceptions().new InvalidPromotionException("Promotion requirements not met.");
+    // Method to validate department
+    public static void validateDepartment(String department) throws InvalidDepartmentException {
+        if (!department.equals("HR") && !department.equals("IT")) {
+            throw new InvalidDepartmentException("Invalid department: " + department);
+        }
     }
 
-    private static void handleTransfer() throws CustomExceptions.TransferNotAllowedException {
-        logger.info("Handling transfer...");
-        // Simulate invalid transfer
-        throw new CustomExceptions().new TransferNotAllowedException("Employee cannot be transferred.");
-    }
+    // Dummy Resource class to demonstrate try-with-resources
+    static class Resource implements AutoCloseable {
+        public void useResource() {
+            System.out.println("Using resource...");
+        }
 
-    // Simulating a resource that needs to be closed
-    static class AutoCloseableResource implements AutoCloseable {
         @Override
-        public void close() {
-            logger.info("Resource closed");
+        public void close() throws ResourceCloseException {
+            System.out.println("Closing resource...");
+            throw new ResourceCloseException("Error while closing resource.");
         }
     }
 }
