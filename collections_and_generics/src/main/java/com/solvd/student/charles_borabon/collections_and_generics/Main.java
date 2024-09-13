@@ -1,64 +1,104 @@
 package com.solvd.student.charles_borabon.collections_and_generics;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Set;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.solvd.student.charles_borabon.collections_and_generics.Employee_Management.Director;
+import com.solvd.student.charles_borabon.collections_and_generics.Employee_Management.Employee;
+import com.solvd.student.charles_borabon.collections_and_generics.Employee_Management.Intern;
+import com.solvd.student.charles_borabon.collections_and_generics.Employee_Management.Manager;
 
 public class Main {
+
+    // Custom Exception classes
+    public static class InvalidSalaryException extends Exception {
+        public InvalidSalaryException(String message) {
+            super(message);
+        }
+    }
+    
+    public static class InvalidDepartmentException extends Exception {
+        public InvalidDepartmentException(String message) {
+            super(message);
+        }
+    }
+    
+    public static class InvalidEmployeeIDException extends Exception {
+        public InvalidEmployeeIDException(String message) {
+            super(message);
+        }
+    }
+    
+    public static class InvalidWorkHoursException extends Exception {
+        public InvalidWorkHoursException(String message) {
+            super(message);
+        }
+    }
+    
+    public static class ResourceCloseException extends Exception {
+        public ResourceCloseException(String message) {
+            super(message);
+        }
+    }
+
+    private static final Logger logger = LogManager.getLogger(Main.class);
+
     public static void main(String[] args) {
-        // Initialize five different Collectoin objects
-        List<String> list = new ArrayList<>();
-        Set<Integer> set = new HashSet<>();
-        Queue<Integer> queue = new PriorityQueue<>();
-        Map<String, Integer> map = new HashMap<>();
-        CustomLinkedList<Integer> linkedList = new CustomLinkedList<>();
+        try {
+            Employee emp1 = new Manager("Alice", 1001, 50000, "HR");
+            Employee emp2 = new Director("Bob", 1002, 80000, "IT", 10000);
 
-        // Add elements to list and print
-        list.add("Hello");
-        list.add("Hello");
-        list.add("World");
-        list.add("Earth");
-        System.out.println("List: " + list);
-        System.out.println("--------------------");
+            emp1.work(); // Manager work method
+            emp2.work(); // Director work method
 
-        // Add elements to set and print
-        set.add(4);
-        set.add(4); // Will not be added due to duplicate
-        set.add(2);
-        set.add(3);
-        set.add(1);
-        System.out.println("Set: " + set);
-        System.out.println("--------------------");
+            // Test final class Intern
+            Intern intern = new Intern("Charlie", 1003, 20000);
+            intern.work();
 
-        // Add elements to queue and print
-        queue.add(4);
-        queue.add(2);
-        queue.add(3);
-        queue.add(1);
-        System.out.println("Queue: " + queue);
-        // Remove one element from queue and print
-        queue.poll();
-        System.out.println("Queue: " + queue);
-        System.out.println("--------------------");
+            // Test static method and block
+            System.out.println("Number of managers: " + Manager.getManagerCount());
 
-        // Add elements to map and print
-        map.put("One", 1);
-        map.put("Two", 2);
-        map.put("Three", 3);
-        System.out.println("Map: " + map);
-        System.out.println("--------------------");
+            // Test custom exceptions
+            validateSalary(-1000);  // Will throw InvalidSalaryException
+            validateDepartment("InvalidDept");  // Will throw InvalidDepartmentException
 
-        // Add elements to linked list and print
-        linkedList.add(1);
-        linkedList.add(2);
-        linkedList.add(3);
-        System.out.println("Linked List: " + linkedList);
-        // Show current head and tail
-        System.out.println("Head: " + linkedList.getHead());
-        System.out.println("Tail: " + linkedList.getTail());
+        } catch (InvalidSalaryException | InvalidDepartmentException e) {
+            logger.error("Exception caught: " + e.getMessage(), e);
+        } catch (Exception e) {
+            logger.error("General exception: " + e.getMessage(), e);
+        }
+
+        // Try-with-resources demonstration
+        try (Resource resource = new Resource()) {
+            resource.useResource();
+        } catch (Exception e) {
+            logger.error("Exception in resource management: " + e.getMessage(), e);
+        }
+    }
+
+    // Method to validate salary and throw exception if invalid
+    public static void validateSalary(int salary) throws InvalidSalaryException {
+        if (salary < 0) {
+            throw new InvalidSalaryException("Salary cannot be negative.");
+        }
+    }
+
+    // Method to validate department
+    public static void validateDepartment(String department) throws InvalidDepartmentException {
+        if (!department.equals("HR") && !department.equals("IT")) {
+            throw new InvalidDepartmentException("Invalid department: " + department);
+        }
+    }
+
+    // Dummy Resource class to demonstrate try-with-resources
+    static class Resource implements AutoCloseable {
+        public void useResource() {
+            System.out.println("Using resource...");
+        }
+
+        @Override
+        public void close() throws ResourceCloseException {
+            System.out.println("Closing resource...");
+            throw new ResourceCloseException("Error while closing resource.");
+        }
     }
 }

@@ -1,0 +1,8 @@
+2024-09-13 11:47:05 [main] ERROR com.solvd.student.charles_borabon.collections_and_generics.Main - Exception caught: Salary cannot be negative.
+com.solvd.student.charles_borabon.collections_and_generics.Main$InvalidSalaryException: Salary cannot be negative.
+	at com.solvd.student.charles_borabon.collections_and_generics.Main.validateSalary(Main.java:81) ~[classes/:?]
+	at com.solvd.student.charles_borabon.collections_and_generics.Main.main(Main.java:61) [classes/:?]
+2024-09-13 11:47:05 [main] ERROR com.solvd.student.charles_borabon.collections_and_generics.Main - Exception in resource management: Error while closing resource.
+com.solvd.student.charles_borabon.collections_and_generics.Main$ResourceCloseException: Error while closing resource.
+	at com.solvd.student.charles_borabon.collections_and_generics.Main$Resource.close(Main.java:101) ~[classes/:?]
+	at com.solvd.student.charles_borabon.collections_and_generics.Main.main(Main.java:73) [classes/:?]
