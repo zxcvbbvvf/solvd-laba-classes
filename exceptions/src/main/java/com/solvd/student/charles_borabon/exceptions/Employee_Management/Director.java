@@ -1,4 +1,4 @@
-package com.solvd.student.charles_borabon.exceptoins.Employee_Management;
+package com.solvd.student.charles_borabon.exceptions.Employee_Management;
 
 public class Director extends Manager {
     private double bonus;
