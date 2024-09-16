@@ -18,7 +18,7 @@ public class EmployeeCollection {
         employees.remove(employee);
     }
 
-    public void displayEmployees() {
+    public void listEmployees() {
         for (Employee employee : employees) {
             System.out.println(employee);
         }

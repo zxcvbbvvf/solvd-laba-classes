@@ -31,17 +31,17 @@ public class Main {
         managerCollection.addEmployee(emp1);
         managerCollection.addEmployee(emp3); // Added Director, but only managers should be listed
         System.out.println("\nManager Collection:");
-        managerCollection.listManagers();
+        managerCollection.displayManagers();
 
         InternCollection internCollection = new InternCollection();
         internCollection.addEmployee(emp2);
         System.out.println("\nIntern Collection:");
-        internCollection.listInterns();
+        internCollection.displayInterns();
 
         DirectorCollection directorCollection = new DirectorCollection();
         directorCollection.addEmployee(emp3);
         System.out.println("\nDirector Collection:");
-        directorCollection.listDirectors();
+        directorCollection.displayDirectors();
 
         // Test EmployeeGroup
         EmployeeGroup employeeGroup = new EmployeeGroup();
@@ -50,6 +50,6 @@ public class Main {
         employeeGroup.addEmployee(emp3);
         System.out.println("\nEmployee Group:");
         employeeGroup.groupDetails();
-        employeeGroup.listEmployees();
+        employeeGroup.displayEmployees();
     }
 }
