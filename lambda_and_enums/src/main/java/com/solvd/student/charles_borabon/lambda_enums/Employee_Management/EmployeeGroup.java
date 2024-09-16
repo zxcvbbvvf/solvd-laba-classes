@@ -1,4 +1,4 @@
-package com.solvd.student.charles_borabon.collections_and_generics.Employee_Management;
+package com.solvd.student.charles_borabon.lambda_enums.Employee_Management;
 
 // EmployeeGroup: Generalized group of employees
 public class EmployeeGroup extends EmployeeCollection {

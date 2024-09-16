@@ -1,4 +1,4 @@
-package com.solvd.student.charles_borabon.collections_and_generics.Employee_Management;
+package com.solvd.student.charles_borabon.lambda_enums.Employee_Management;
 
 // InternCollection, extending EmployeeCollection for managing interns
 public class InternCollection extends EmployeeCollection {

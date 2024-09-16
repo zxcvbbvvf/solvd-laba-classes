@@ -1,4 +1,4 @@
-package com.solvd.student.charles_borabon.collections_and_generics.Employee_Management;
+package com.solvd.student.charles_borabon.lambda_enums.Employee_Management;
 
 import java.util.Objects;
 
@@ -13,8 +13,8 @@ public class Manager extends Employee {
         managerCount = 0;
     }
 
-    public Manager(String name, int id, double salary, String department) {
-        super(name, id, salary);
+    public Manager(String name, int id, double salary, int age, String department) {
+        super(name, id, salary, age);
         this.department = department;
         managerCount++;
     }

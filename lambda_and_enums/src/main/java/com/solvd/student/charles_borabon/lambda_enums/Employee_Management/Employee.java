@@ -1,4 +1,4 @@
-package com.solvd.student.charles_borabon.collections_and_generics.Employee_Management;
+package com.solvd.student.charles_borabon.lambda_enums.Employee_Management;
 
 import java.util.Objects;
 
@@ -6,11 +6,13 @@ public abstract class Employee implements Payable, Promotable, Trainable, Transf
     protected final String name;
     protected final int id;
     protected double salary;
+    protected int age;
 
-    public Employee(String name, int id, double salary) {
+    public Employee(String name, int id, double salary, int age) {
         this.name = name;
         this.id = id;
         this.salary = salary;
+        this.age = age;
     }
 
     // Abstract method to be implemented by subclasses
@@ -66,5 +68,30 @@ public abstract class Employee implements Payable, Promotable, Trainable, Transf
     @Override
     public void retire() {
         System.out.println(name + " has retired.");
+    }
+
+    // Getters and setters
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }

@@ -1,10 +1,10 @@
-package com.solvd.student.charles_borabon.collections_and_generics.Employee_Management;
+package com.solvd.student.charles_borabon.lambda_enums.Employee_Management;
 
 public class Director extends Manager {
     private double bonus;
 
-    public Director(String name, int id, double salary, String department, double bonus) {
-        super(name, id, salary, department);
+    public Director(String name, int id, double salary, int age, String department, double bonus) {
+        super(name, id, salary, age, department);
         this.bonus = bonus;
     }
 
