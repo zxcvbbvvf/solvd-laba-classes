@@ -3,7 +3,7 @@ package com.solvd.student.charles_borabon.collection_streaming.Employee_Manageme
 import java.util.Objects;
 
 public abstract class Employee implements Payable, Promotable, Trainable, Transferable, Retirable {
-    protected final String name;
+    protected String name;
     protected final int id;
     protected double salary;
     protected int age;
@@ -73,6 +73,10 @@ public abstract class Employee implements Payable, Promotable, Trainable, Transf
     // Getters and setters
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getId() {
