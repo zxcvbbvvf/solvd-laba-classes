@@ -1,88 +1,128 @@
 package com.solvd.student.charles_borabon.threads;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
-import com.solvd.student.charles_borabon.threads.Employee_Management.Director;
-import com.solvd.student.charles_borabon.threads.Employee_Management.Employee;
-import com.solvd.student.charles_borabon.threads.Employee_Management.Intern;
-import com.solvd.student.charles_borabon.threads.Employee_Management.Manager;
+// Step 2: Mocked Connection class
+class Connection {
+    private static int counter = 0;
+    private final int id;
+
+    public Connection() {
+        this.id = ++counter;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Connection{" + "id=" + id + '}';
+    }
+}
+
+// Step 2: Thread-safe connection pool using BlockingQueue and lazy initialization
+class ConnectionPool {
+    private static final int MAX_POOL_SIZE = 5;
+    private final BlockingQueue<Connection> connectionQueue;
+
+    private ConnectionPool() {
+        connectionQueue = new LinkedBlockingQueue<>(MAX_POOL_SIZE);
+        for (int i = 0; i < MAX_POOL_SIZE; i++) {
+            connectionQueue.offer(new Connection());
+        }
+    }
+
+    // Lazy initialization with Singleton pattern
+    private static class SingletonHolder {
+        private static final ConnectionPool INSTANCE = new ConnectionPool();
+    }
+
+    public static ConnectionPool getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
+    public Connection getConnection() throws InterruptedException {
+        return connectionQueue.take(); // Waits if no connection is available
+    }
+
+    public void releaseConnection(Connection connection) {
+        connectionQueue.offer(connection);
+    }
+}
+
+// Step 4: Task using Future and CompletionStage
+class ConnectionTask implements Callable<Connection> {
+    private final ConnectionPool connectionPool;
+
+    public ConnectionTask(ConnectionPool pool) {
+        this.connectionPool = pool;
+    }
+
+    @Override
+    public Connection call() throws InterruptedException {
+        return connectionPool.getConnection();
+    }
+}
 
 public class Main {
 
-    public static void main(String[] args) {
-        // Example data to work with
-        List<Employee> employees = Arrays.asList(
-            new Director("John", 40, 120000, 0, "", 0.0),
-            new Intern("Jane", 22, 30000, 0),
-            new Manager("Alice", 35, 90000, 0, "")
-        );
-        
-        // 1. Streaming operations - Non-terminal and terminal
-        employees.stream()
-            .filter(e -> e.getAge() > 30) // Non-terminal: Filter employees older than 30
-            .map(Employee::getName)       // Non-terminal: Map to employee names
-            .sorted()                     // Non-terminal: Sort names alphabetically
-            .forEach(System.out::println); // Terminal: Print names
-        
-        // 2. Collecting to List
-        List<String> employeeNames = employees.stream()
-            .map(Employee::getName)  // Non-terminal: Map to employee names
-            .collect(Collectors.toList()); // Terminal: Collect to a List
-        
-        System.out.println("Employee Names: " + employeeNames);
-        
-        // 3. Count the number of employees above a certain salary
-        long count = employees.stream()
-            .filter(e -> e.getSalary() > 50000) // Non-terminal: Filter employees with salary > 50000
-            .count(); // Terminal: Count the number of employees
-        
-        System.out.println("Number of employees with salary > 50000: " + count);
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
 
-        // Reflection example
-        try {
-            // Reflection - Get class details
-            Class<?> directorClass = Class.forName("com.solvd.student.charles_borabon.collection_streaming.Employee_Management.Director");
+        // Step 3: Create a pool of connections (size 5) and use 7 threads
+        ConnectionPool connectionPool = ConnectionPool.getInstance();
+        ExecutorService executor = Executors.newFixedThreadPool(7);
 
-            // Display all declared fields
-            Field[] fields = directorClass.getDeclaredFields();
-            System.out.println("Fields in Director:");
-            for (Field field : fields) {
-                System.out.println(field.getName() + " - " + field.getType());
-            }
-
-            // Display all declared methods
-            Method[] methods = directorClass.getDeclaredMethods();
-            System.out.println("Methods in Director:");
-            for (Method method : methods) {
-                System.out.println(method.getName() + " - Return type: " + method.getReturnType());
-            }
-
-            // Display constructors
-            Constructor<?>[] constructors = directorClass.getDeclaredConstructors();
-            System.out.println("Constructors in Director:");
-            for (Constructor<?> constructor : constructors) {
-                System.out.println(Arrays.toString(constructor.getParameterTypes()));
-            }
-
-            // Create an instance using reflection
-            Constructor<?> directorConstructor = directorClass.getConstructor(String.class, int.class, double.class, int.class, String.class, double.class);
-            Object directorInstance = directorConstructor.newInstance("Mark", 50, 150000, 45, "Sales", 5000.0);
-
-            // Call a method using reflection
-            Method setNameMethod = directorClass.getMethod("setName", String.class);
-            setNameMethod.invoke(directorInstance, "Mark Updated");
-
-            Method getNameMethod = directorClass.getMethod("getName");
-            String updatedName = (String) getNameMethod.invoke(directorInstance);
-            System.out.println("Updated Name: " + updatedName);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (int i = 0; i < 7; i++) {
+            executor.submit(() -> {
+                try {
+                    Connection conn = connectionPool.getConnection();
+                    System.out.println(Thread.currentThread().getName() + " acquired " + conn);
+                    // Simulate work with connection
+                    Thread.sleep(2000);
+                    connectionPool.releaseConnection(conn);
+                    System.out.println(Thread.currentThread().getName() + " released " + conn);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
         }
+
+        executor.shutdown();
+        executor.awaitTermination(10, TimeUnit.SECONDS);
+
+        // Step 4: Using CompletionStage and Future for asynchronous connection handling
+        System.out.println("Starting CompletionStage and Future example...");
+        ExecutorService futureExecutor = Executors.newFixedThreadPool(5);
+
+        // Example of Future
+        Future<Connection> future = futureExecutor.submit(new ConnectionTask(connectionPool));
+        System.out.println("Future acquired connection " + future.get()); // Blocking call until connection is available
+
+        // Example of CompletionStage using CompletableFuture
+        CompletableFuture<Void> futureTasks = CompletableFuture.supplyAsync(() -> {
+            try {
+                return connectionPool.getConnection();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }, futureExecutor).thenAccept(connection -> {
+            if (connection != null) {
+                System.out.println("Async task acquired connection " + connection);
+                connectionPool.releaseConnection(connection);
+            }
+        });
+
+        futureTasks.join(); // Non-blocking wait for all tasks to complete
+        futureExecutor.shutdown();
     }
 }
