@@ -10,66 +10,51 @@ import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
-// Step 2: Mocked Connection class
-class Connection {
-    private static int counter = 0;
-    private final int id;
+import com.solvd.student.charles_borabon.threads.Employee_Management.Employee;
+import com.solvd.student.charles_borabon.threads.Employee_Management.Intern;
 
-    public Connection() {
-        this.id = ++counter;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public String toString() {
-        return "Connection{" + "id=" + id + '}';
-    }
-}
-
-// Step 2: Thread-safe connection pool using BlockingQueue and lazy initialization
-class ConnectionPool {
+// Step 2: Thread-safe Employee pool using BlockingQueue and lazy initialization
+class EmployeePool {
     private static final int MAX_POOL_SIZE = 5;
-    private final BlockingQueue<Connection> connectionQueue;
+    private final BlockingQueue<Employee> employeeQueue;
 
-    private ConnectionPool() {
-        connectionQueue = new LinkedBlockingQueue<>(MAX_POOL_SIZE);
-        for (int i = 0; i < MAX_POOL_SIZE; i++) {
-            connectionQueue.offer(new Connection());
+    private EmployeePool() {
+        employeeQueue = new LinkedBlockingQueue<>(MAX_POOL_SIZE);
+        // Assuming Employee class has a constructor with ID or Name
+        for (int i = 1; i <= MAX_POOL_SIZE; i++) {
+            employeeQueue.offer(new Intern("Employee-" + i, i, 0.0, 0));
         }
     }
 
     // Lazy initialization with Singleton pattern
     private static class SingletonHolder {
-        private static final ConnectionPool INSTANCE = new ConnectionPool();
+        private static final EmployeePool INSTANCE = new EmployeePool();
     }
 
-    public static ConnectionPool getInstance() {
+    public static EmployeePool getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
-    public Connection getConnection() throws InterruptedException {
-        return connectionQueue.take(); // Waits if no connection is available
+    public Employee getEmployee() throws InterruptedException {
+        return employeeQueue.take(); // Waits if no employee is available
     }
 
-    public void releaseConnection(Connection connection) {
-        connectionQueue.offer(connection);
+    public void releaseEmployee(Employee employee) {
+        employeeQueue.offer(employee);
     }
 }
 
-// Step 4: Task using Future and CompletionStage
-class ConnectionTask implements Callable<Connection> {
-    private final ConnectionPool connectionPool;
+// Step 4: Task using Future and CompletionStage to acquire Employee
+class EmployeeTask implements Callable<Employee> {
+    private final EmployeePool employeePool;
 
-    public ConnectionTask(ConnectionPool pool) {
-        this.connectionPool = pool;
+    public EmployeeTask(EmployeePool pool) {
+        this.employeePool = pool;
     }
 
     @Override
-    public Connection call() throws InterruptedException {
-        return connectionPool.getConnection();
+    public Employee call() throws InterruptedException {
+        return employeePool.getEmployee();
     }
 }
 
@@ -77,19 +62,20 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
 
-        // Step 3: Create a pool of connections (size 5) and use 7 threads
-        ConnectionPool connectionPool = ConnectionPool.getInstance();
+        // Step 3: Create a pool of Employees (size 5) and use 7 threads
+        EmployeePool employeePool = EmployeePool.getInstance();
         ExecutorService executor = Executors.newFixedThreadPool(7);
 
+        // Threads simulate the use of employees for various tasks
         for (int i = 0; i < 7; i++) {
             executor.submit(() -> {
                 try {
-                    Connection conn = connectionPool.getConnection();
-                    System.out.println(Thread.currentThread().getName() + " acquired " + conn);
-                    // Simulate work with connection
+                    Employee employee = employeePool.getEmployee();
+                    System.out.println(Thread.currentThread().getName() + " acquired " + employee.getName());
+                    // Simulate work with employee
                     Thread.sleep(2000);
-                    connectionPool.releaseConnection(conn);
-                    System.out.println(Thread.currentThread().getName() + " released " + conn);
+                    employeePool.releaseEmployee(employee);
+                    System.out.println(Thread.currentThread().getName() + " released " + employee.getName());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -99,26 +85,27 @@ public class Main {
         executor.shutdown();
         executor.awaitTermination(10, TimeUnit.SECONDS);
 
-        // Step 4: Using CompletionStage and Future for asynchronous connection handling
-        System.out.println("Starting CompletionStage and Future example...");
+        // Step 4: Using CompletionStage and Future for asynchronous employee handling
+        System.out.println("Starting CompletionStage and Future example with Employee pool...");
         ExecutorService futureExecutor = Executors.newFixedThreadPool(5);
 
         // Example of Future
-        Future<Connection> future = futureExecutor.submit(new ConnectionTask(connectionPool));
-        System.out.println("Future acquired connection " + future.get()); // Blocking call until connection is available
+        Future<Employee> future = futureExecutor.submit(new EmployeeTask(employeePool));
+        Employee futureEmployee = future.get(); // Blocking call until employee is available
+        System.out.println("Future acquired employee: " + futureEmployee.getName());
 
         // Example of CompletionStage using CompletableFuture
         CompletableFuture<Void> futureTasks = CompletableFuture.supplyAsync(() -> {
             try {
-                return connectionPool.getConnection();
+                return employeePool.getEmployee();
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 return null;
             }
-        }, futureExecutor).thenAccept(connection -> {
-            if (connection != null) {
-                System.out.println("Async task acquired connection " + connection);
-                connectionPool.releaseConnection(connection);
+        }, futureExecutor).thenAccept(employee -> {
+            if (employee != null) {
+                System.out.println("Async task acquired employee " + employee.getName());
+                employeePool.releaseEmployee(employee);
             }
         });
 
