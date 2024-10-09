@@ -10,4 +10,12 @@
         <maven.compiler.target>21</maven.compiler.target>
         <exec.mainClass>com.solvd.student.charles_borabon.dao_classes.Main</exec.mainClass>
     </properties>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>9.0.0</version>
+        </dependency>
+    </dependencies>
 </project>
