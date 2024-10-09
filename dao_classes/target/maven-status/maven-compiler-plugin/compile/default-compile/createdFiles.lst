@@ -1,4 +1,7 @@
+com\solvd\student\charles_borabon\dao_classes\dao\Hotel.class
 com\solvd\student\charles_borabon\dao_classes\dao\GenericDAO.class
 com\solvd\student\charles_borabon\dao_classes\dao\AbstractDAO.class
 com\solvd\student\charles_borabon\dao_classes\dao\ConnectionPool.class
+com\solvd\student\charles_borabon\dao_classes\dao\HotelDAO.class
+com\solvd\student\charles_borabon\dao_classes\dao\AbstractService.class
 com\solvd\student\charles_borabon\dao_classes\Main.class
