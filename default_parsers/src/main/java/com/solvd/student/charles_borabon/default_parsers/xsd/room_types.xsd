@@ -1,0 +1,16 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="room_types">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="room_type" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="room_type_id" type="xs:int"/>
+                            <xs:element name="room_type_name" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

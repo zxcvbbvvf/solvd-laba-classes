@@ -1,0 +1,16 @@
+<customers>
+    <customer>
+        <customer_id>1</customer_id>
+        <first_name>John</first_name>
+        <last_name>Doe</last_name>
+        <email>john.doe@example.com</email>
+        <phone>+1-800-123-4567</phone>
+    </customer>
+    <customer>
+        <customer_id>2</customer_id>
+        <first_name>Jane</first_name>
+        <last_name>Smith</last_name>
+        <email>jane.smith@example.com</email>
+        <phone>+1-800-987-6543</phone>
+    </customer>
+</customers>

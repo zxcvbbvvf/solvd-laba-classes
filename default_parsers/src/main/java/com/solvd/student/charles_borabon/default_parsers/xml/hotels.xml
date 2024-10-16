@@ -1,0 +1,20 @@
+<hotels>
+    <hotel>
+        <hotel_id>1</hotel_id>
+        <hotel_name>Grand Palace</hotel_name>
+        <address>123 Main Street</address>
+        <city>New York</city>
+        <state>NY</state>
+        <country>USA</country>
+        <phone>+1-800-555-5555</phone>
+    </hotel>
+    <hotel>
+        <hotel_id>2</hotel_id>
+        <hotel_name>Sunrise Inn</hotel_name>
+        <address>456 Beach Blvd</address>
+        <city>Los Angeles</city>
+        <state>CA</state>
+        <country>USA</country>
+        <phone>+1-800-555-1234</phone>
+    </hotel>
+</hotels>

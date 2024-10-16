@@ -1,0 +1,18 @@
+<rooms>
+    <room>
+        <room_id>1</room_id>
+        <hotel_id>1</hotel_id>
+        <room_type_id>1</room_type_id>
+        <room_number>101</room_number>
+        <price_per_night>120.50</price_per_night>
+        <availability_status>true</availability_status>
+    </room>
+    <room>
+        <room_id>2</room_id>
+        <hotel_id>1</hotel_id>
+        <room_type_id>2</room_type_id>
+        <room_number>102</room_number>
+        <price_per_night>150.75</price_per_night>
+        <availability_status>false</availability_status>
+    </room>
+</rooms>

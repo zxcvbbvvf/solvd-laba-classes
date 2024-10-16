@@ -1,0 +1,10 @@
+<room_types>
+    <room_type>
+        <room_type_id>1</room_type_id>
+        <room_type_name>Single</room_type_name>
+    </room_type>
+    <room_type>
+        <room_type_id>2</room_type_id>
+        <room_type_name>Double</room_type_name>
+    </room_type>
+</room_types>
