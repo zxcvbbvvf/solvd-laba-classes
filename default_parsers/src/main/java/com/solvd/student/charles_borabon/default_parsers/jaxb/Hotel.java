@@ -35,6 +35,27 @@ public class Hotel {
         return hotel_id;
     }
 
+    public Hotel() {
+    }
+
+    public Hotel(int hotel_id, String hotel_name, String address, String city, String state, String country, String phone) {
+
+        this.hotel_id = hotel_id;
+
+        this.hotel_name = hotel_name;
+
+        this.address = address;
+
+        this.city = city;
+
+        this.state = state;
+
+        this.country = country;
+
+        this.phone = phone;
+
+    }
+
     public void setHotel_id(int hotel_id) {
         this.hotel_id = hotel_id;
     }

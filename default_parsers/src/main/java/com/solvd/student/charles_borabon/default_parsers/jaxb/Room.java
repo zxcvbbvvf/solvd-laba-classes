@@ -25,6 +25,25 @@ public class Room {
     @JsonProperty("availability_status")
     private boolean availability_status;
 
+    public Room() {
+    }
+
+    public Room(int room_id, int hotel_id, int room_type_id, String room_number, double price_per_night, boolean availability_status) {
+
+        this.room_id = room_id;
+
+        this.hotel_id = hotel_id;
+
+        this.room_type_id = room_type_id;
+
+        this.room_number = room_number;
+
+        this.price_per_night = price_per_night;
+
+        this.availability_status = availability_status;
+
+    }
+
     // Getters and Setters
     @XmlElement
     public int getRoom_id() {

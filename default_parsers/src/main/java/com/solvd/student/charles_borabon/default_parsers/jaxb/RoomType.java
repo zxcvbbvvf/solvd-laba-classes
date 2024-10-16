@@ -13,6 +13,17 @@ public class RoomType {
     @JsonProperty("room_type_name")
     private String room_type_name;
 
+    public RoomType() {
+    }
+
+    public RoomType(int room_type_id, String room_type_name) {
+
+        this.room_type_id = room_type_id;
+
+        this.room_type_name = room_type_name;
+
+    }
+
     // Getters and Setters
     @XmlElement
     public int getRoom_type_id() {

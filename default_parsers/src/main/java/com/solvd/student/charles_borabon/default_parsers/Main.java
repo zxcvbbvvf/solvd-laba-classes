@@ -1,7 +1,12 @@
 package com.solvd.student.charles_borabon.default_parsers;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.solvd.student.charles_borabon.default_parsers.jaxb.Booking;
 import com.solvd.student.charles_borabon.default_parsers.jaxb.BookingList;
 import com.solvd.student.charles_borabon.default_parsers.jaxb.Customer;
@@ -113,9 +118,9 @@ public class Main {
             File roomTypesFile = new File("src/main/java/com/solvd/student/charles_borabon/default_parsers/xml/room_types.xml");
             RoomTypeList roomTypeList = (RoomTypeList) roomTypesUnmarshaller.unmarshal(roomTypesFile);
             System.out.println("Room Types:");
-            for (RoomType roomType : roomTypeList.getRoomTypes()) {
-                System.out.println("Room Type ID: " + roomType.getRoom_type_id());
-                System.out.println("Room Type Name: " + roomType.getRoom_type_name());
+            for (RoomType room_type : roomTypeList.getRoomTypes()) {
+                System.out.println("Room Type ID: " + room_type.getRoom_type_id());
+                System.out.println("Room Type Name: " + room_type.getRoom_type_name());
                 System.out.println("---------------------------------");
             }
 
@@ -169,6 +174,60 @@ public class Main {
             }
 
         } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
+
+        System.out.println("\n\nJSON Serialization\n");
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            // Serialize Hotels
+            List<Hotel> hotelList = new ArrayList<>();
+            hotelList.add(new Hotel(1, "Grand Palace", "123 Main St", "New York", "NY", "USA", "+1-800-555-5555"));
+            hotelList.add(new Hotel(2, "Sunrise Inn", "456 Beach Blvd", "Los Angeles", "CA", "USA", "+1-800-555-1234"));
+            HotelList hotels = new HotelList();
+            hotels.setHotels(hotelList);
+            System.out.println("Hotels JSON:");
+            System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(hotels));
+
+            // Serialize Room Types
+            List<RoomType> roomTypeList = new ArrayList<>();
+            roomTypeList.add(new RoomType(1, "Single"));
+            roomTypeList.add(new RoomType(2, "Double"));
+            RoomTypeList roomTypes = new RoomTypeList();
+            roomTypes.setRoomTypes(roomTypeList);
+            System.out.println("Room Types JSON:");
+            System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(roomTypes));
+
+            // Serialize Rooms
+            List<Room> roomList = new ArrayList<>();
+            roomList.add(new Room(1, 1, 1, "101", 120.50, true));
+            roomList.add(new Room(2, 1, 2, "102", 150.75, false));
+            RoomList rooms = new RoomList();
+            rooms.setRooms(roomList);
+            System.out.println("Rooms JSON:");
+            System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(rooms));
+
+            // Serialize Customers
+            List<Customer> customerList = new ArrayList<>();
+            customerList.add(new Customer(1, "John", "Doe", "john.doe@example.com", "+1-800-123-4567"));
+            customerList.add(new Customer(2, "Jane", "Smith", "jane.smith@example.com", "+1-800-987-6543"));
+            CustomerList customers = new CustomerList();
+            customers.setCustomers(customerList);
+            System.out.println("Customers JSON:");
+            System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(customers));
+
+            // Serialize Bookings
+            List<Booking> bookingList = new ArrayList<>();
+            bookingList.add(new Booking(1, 1, 1, new Date(), new Date(), new Date(), 600.50, true));
+            bookingList.add(new Booking(2, 2, 2, new Date(), new Date(), new Date(), 750.75, false));
+            BookingList bookings = new BookingList();
+            bookings.setBookings(bookingList);
+            System.out.println("Bookings JSON:");
+            System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(bookings));
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

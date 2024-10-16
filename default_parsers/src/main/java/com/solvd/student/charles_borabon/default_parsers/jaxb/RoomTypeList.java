@@ -13,14 +13,15 @@ import jakarta.xml.bind.annotation.XmlType;
 public class RoomTypeList {
 
     @JsonProperty("room_types")
-    private List<RoomType> room_types;
+    private List<RoomType> roomTypes;
 
     @XmlElement(name = "room_type")
+    @JsonProperty("room_types")
     public List<RoomType> getRoomTypes() {
-        return room_types;
+        return roomTypes;
     }
 
-    public void setRoomTypes(List<RoomType> room_types) {
-        this.room_types = room_types;
+    public void setRoomTypes(List<RoomType> roomTypes) {
+        this.roomTypes = roomTypes;
     }
 }

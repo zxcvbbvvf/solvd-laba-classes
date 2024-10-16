@@ -1,5 +1,7 @@
 package com.solvd.student.charles_borabon.default_parsers.jaxb;
 
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,21 +21,44 @@ public class Booking {
 
     @JsonProperty("booking_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private String booking_date;
+    private Date booking_date;
 
     @JsonProperty("check_in_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private String check_in_date;
+    private Date check_in_date;
 
     @JsonProperty("check_out_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private String check_out_date;
+    private Date check_out_date;
 
     @JsonProperty("total_price")
     private double total_price;
 
     @JsonProperty("payment_status")
     private boolean payment_status;
+
+    public Booking() {
+    }
+
+    public Booking(int booking_id, int customer_id, int room_id, Date booking_date, Date check_in_date, Date check_out_date, double total_price, boolean payment_status) {
+
+        this.booking_id = booking_id;
+
+        this.customer_id = customer_id;
+
+        this.room_id = room_id;
+
+        this.booking_date = booking_date;
+
+        this.check_in_date = check_in_date;
+
+        this.check_out_date = check_out_date;
+
+        this.total_price = total_price;
+
+        this.payment_status = payment_status;
+
+    }
 
     // Getters and Setters
     @XmlElement
@@ -64,29 +89,29 @@ public class Booking {
     }
 
     @XmlElement
-    public String getBooking_date() {
+    public Date getBooking_date() {
         return booking_date;
     }
 
-    public void setBooking_date(String booking_date) {
+    public void setBooking_date(Date booking_date) {
         this.booking_date = booking_date;
     }
 
     @XmlElement
-    public String getCheck_in_date() {
+    public Date getCheck_in_date() {
         return check_in_date;
     }
 
-    public void setCheck_in_date(String check_in_date) {
+    public void setCheck_in_date(Date check_in_date) {
         this.check_in_date = check_in_date;
     }
 
     @XmlElement
-    public String getCheck_out_date() {
+    public Date getCheck_out_date() {
         return check_out_date;
     }
 
-    public void setCheck_out_date(String check_out_date) {
+    public void setCheck_out_date(Date check_out_date) {
         this.check_out_date = check_out_date;
     }
 

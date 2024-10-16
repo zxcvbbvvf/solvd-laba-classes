@@ -22,6 +22,23 @@ public class Customer {
     @JsonProperty("phone")
     private String phone;
 
+    public Customer() {
+    }
+
+    public Customer(int customer_id, String first_name, String last_name, String email, String phone) {
+
+        this.customer_id = customer_id;
+
+        this.first_name = first_name;
+
+        this.last_name = last_name;
+
+        this.email = email;
+
+        this.phone = phone;
+
+    }
+
     // Getters and Setters
     @XmlElement
     public int getCustomer_id() {
