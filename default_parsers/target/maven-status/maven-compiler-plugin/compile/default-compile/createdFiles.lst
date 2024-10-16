@@ -1,2 +1,3 @@
 com\solvd\student\charles_borabon\default_parsers\validators\XMLValidator.class
 com\solvd\student\charles_borabon\default_parsers\Main.class
+com\solvd\student\charles_borabon\default_parsers\parsers\XMLStAXParser.class
