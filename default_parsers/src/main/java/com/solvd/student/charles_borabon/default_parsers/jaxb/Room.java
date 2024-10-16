@@ -1,15 +1,28 @@
 package com.solvd.student.charles_borabon.default_parsers.jaxb;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 @XmlType(propOrder = {"room_id", "hotel_id", "room_type_id", "room_number", "price_per_night", "availability_status"})
 public class Room {
+    @JsonProperty("room_id")
     private int room_id;
+
+    @JsonProperty("hotel_id")
     private int hotel_id;
+
+    @JsonProperty("room_type_id")
     private int room_type_id;
+
+    @JsonProperty("room_number")
     private String room_number;
+
+    @JsonProperty("price_per_night")
     private double price_per_night;
+
+    @JsonProperty("availability_status")
     private boolean availability_status;
 
     // Getters and Setters

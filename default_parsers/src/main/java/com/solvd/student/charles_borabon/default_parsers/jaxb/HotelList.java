@@ -5,11 +5,13 @@ import java.util.List;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @XmlRootElement(name = "hotels")
 @XmlType(propOrder = {"hotels"})
 public class HotelList {
 
+    @JsonProperty("hotels")
     private List<Hotel> hotels;
 
     @XmlElement(name = "hotel")

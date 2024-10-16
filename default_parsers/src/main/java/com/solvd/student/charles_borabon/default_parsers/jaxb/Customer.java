@@ -1,14 +1,25 @@
 package com.solvd.student.charles_borabon.default_parsers.jaxb;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 @XmlType(propOrder = {"customer_id", "first_name", "last_name", "email", "phone"})
 public class Customer {
+    @JsonProperty("customer_id")
     private int customer_id;
+
+    @JsonProperty("first_name")
     private String first_name;
+
+    @JsonProperty("last_name")
     private String last_name;
+
+    @JsonProperty("email")
     private String email;
+
+    @JsonProperty("phone")
     private String phone;
 
     // Getters and Setters

@@ -2,6 +2,8 @@ package com.solvd.student.charles_borabon.default_parsers.jaxb;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
@@ -10,6 +12,7 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlType(propOrder = {"roomTypes"})
 public class RoomTypeList {
 
+    @JsonProperty("room_types")
     private List<RoomType> room_types;
 
     @XmlElement(name = "room_type")
