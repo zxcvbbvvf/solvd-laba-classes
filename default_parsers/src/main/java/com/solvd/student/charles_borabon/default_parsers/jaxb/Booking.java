@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlSchemaType;
 import jakarta.xml.bind.annotation.XmlType;
 
 @XmlType(propOrder = {"booking_id", "customer_id", "room_id", "booking_date", "check_in_date", "check_out_date", "total_price", "payment_status"})
@@ -89,6 +90,7 @@ public class Booking {
     }
 
     @XmlElement
+    @XmlSchemaType(name = "date")
     public Date getBooking_date() {
         return booking_date;
     }
@@ -98,6 +100,7 @@ public class Booking {
     }
 
     @XmlElement
+    @XmlSchemaType(name = "date")
     public Date getCheck_in_date() {
         return check_in_date;
     }
@@ -107,6 +110,7 @@ public class Booking {
     }
 
     @XmlElement
+    @XmlSchemaType(name = "date")
     public Date getCheck_out_date() {
         return check_out_date;
     }
