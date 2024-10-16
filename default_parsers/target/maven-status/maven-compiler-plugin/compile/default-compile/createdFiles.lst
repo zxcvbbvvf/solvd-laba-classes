@@ -1,3 +1,13 @@
-com\solvd\student\charles_borabon\default_parsers\validators\XMLValidator.class
+com\solvd\student\charles_borabon\default_parsers\jaxb\Booking.class
 com\solvd\student\charles_borabon\default_parsers\Main.class
+com\solvd\student\charles_borabon\default_parsers\validators\XMLValidator.class
+com\solvd\student\charles_borabon\default_parsers\jaxb\RoomType.class
+com\solvd\student\charles_borabon\default_parsers\jaxb\Customer.class
+com\solvd\student\charles_borabon\default_parsers\jaxb\Hotel.class
 com\solvd\student\charles_borabon\default_parsers\parsers\XMLStAXParser.class
+com\solvd\student\charles_borabon\default_parsers\jaxb\CustomerList.class
+com\solvd\student\charles_borabon\default_parsers\jaxb\RoomList.class
+com\solvd\student\charles_borabon\default_parsers\jaxb\BookingList.class
+com\solvd\student\charles_borabon\default_parsers\jaxb\HotelList.class
+com\solvd\student\charles_borabon\default_parsers\jaxb\Room.class
+com\solvd\student\charles_borabon\default_parsers\jaxb\RoomTypeList.class

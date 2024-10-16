@@ -9,4 +9,12 @@
         <maven.compiler.release>21</maven.compiler.release>
         <exec.mainClass>com.solvd.student.charles_borabon.default_parsers.Main</exec.mainClass>
     </properties>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api -->
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>4.0.2</version>
+        </dependency>
+    </dependencies>
 </project>
