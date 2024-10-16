@@ -1,5 +1,6 @@
 package com.solvd.student.charles_borabon.default_parsers.jaxb;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.xml.bind.annotation.XmlElement;
@@ -17,12 +18,15 @@ public class Booking {
     private int room_id;
 
     @JsonProperty("booking_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private String booking_date;
 
     @JsonProperty("check_in_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private String check_in_date;
 
     @JsonProperty("check_out_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private String check_out_date;
 
     @JsonProperty("total_price")
