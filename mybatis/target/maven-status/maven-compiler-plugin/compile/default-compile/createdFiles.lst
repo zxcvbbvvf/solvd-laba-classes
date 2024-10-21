@@ -1,0 +1,8 @@
+com\solvd\student\charles_borabon\mybatis\dao\AbstractService.class
+com\solvd\student\charles_borabon\mybatis\dao\Hotel.class
+com\solvd\student\charles_borabon\mybatis\dao\ConnectionPool.class
+com\solvd\student\charles_borabon\mybatis\Main.class
+com\solvd\student\charles_borabon\mybatis\dao\HotelDAO.class
+com\solvd\student\charles_borabon\mybatis\dao\AbstractDAO.class
+com\solvd\student\charles_borabon\mybatis\dao\GenericDAO.class
+com\solvd\student\charles_borabon\mybatis\util\MyBatisUtil.class
