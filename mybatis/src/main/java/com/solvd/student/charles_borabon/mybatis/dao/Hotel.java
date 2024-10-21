@@ -1,8 +1,8 @@
 package com.solvd.student.charles_borabon.mybatis.dao;
 
 public class Hotel {
-    private int hotelId;
-    private String hotelName;
+    private int hotel_id;
+    private String hotel_name;
     private String address;
     private String city;
     private String state;
@@ -11,19 +11,19 @@ public class Hotel {
 
     // Getters and Setters
     public int getHotelId() {
-        return hotelId;
+        return hotel_id;
     }
 
     public void setHotelId(int hotelId) {
-        this.hotelId = hotelId;
+        this.hotel_id = hotelId;
     }
 
     public String getHotelName() {
-        return hotelName;
+        return hotel_name;
     }
 
     public void setHotelName(String hotelName) {
-        this.hotelName = hotelName;
+        this.hotel_name = hotelName;
     }
 
     public String getAddress() {
