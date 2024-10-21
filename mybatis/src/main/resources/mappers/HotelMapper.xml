@@ -16,7 +16,7 @@
     <insert id="insertHotel" parameterType="com.solvd.student.charles_borabon.mybatis.dao.Hotel">
         INSERT INTO hotels (hotel_name, address, city, state, country, phone) 
         VALUES (#{hotel_name}, #{address}, #{city}, #{state}, #{country}, #{phone});
-        <selectKey keyProperty="hotelId" resultType="int" order="AFTER">
+        <selectKey keyProperty="hotel_id" resultType="int" order="AFTER">
             SELECT LAST_INSERT_ID();
         </selectKey>
     </insert>
