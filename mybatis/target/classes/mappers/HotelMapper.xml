@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.student.charles_borabon.mybatis.dao.HotelDAO">
+    
+    <!-- Select hotel by ID -->
+    <select id="getHotelById" parameterType="int" resultType="com.solvd.student.charles_borabon.mybatis.dao.Hotel">
+        SELECT hotel_id, hotel_name, address, city, state, country, phone
+        FROM hotels
+        WHERE hotel_id = #{id};
+    </select>    
+
+    <!-- Insert new hotel -->
+    <insert id="insertHotel" parameterType="com.solvd.student.charles_borabon.mybatis.dao.Hotel">
+        INSERT INTO hotels (hotel_name, address, city, state, country, phone) 
+        VALUES (#{hotelName}, #{address}, #{city}, #{state}, #{country}, #{phone});
+        <selectKey keyProperty="hotelId" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+    </insert>
+
+    <!-- Update an existing hotel -->
+    <update id="updateHotel" parameterType="com.solvd.student.charles_borabon.mybatis.dao.Hotel">
+        UPDATE hotels 
+        SET hotel_name = #{hotelName}, 
+            address = #{address}, 
+            city = #{city}, 
+            state = #{state}, 
+            country = #{country}, 
+            phone = #{phone} 
+        WHERE hotel_id = #{hotelId};
+    </update>
+
+    <!-- Delete a hotel by ID -->
+    <delete id="deleteHotel" parameterType="int">
+        DELETE FROM hotels WHERE hotel_id = #{id};
+    </delete>
+
+    <!-- Select all hotels -->
+    <select id="getAllHotels" resultType="com.solvd.student.charles_borabon.mybatis.dao.Hotel">
+        SELECT * FROM hotels;
+    </select>
+
+</mapper>
