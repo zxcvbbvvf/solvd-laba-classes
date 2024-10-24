@@ -15,8 +15,8 @@
     <!-- Insert new hotel -->
     <insert id="insertHotel" parameterType="com.solvd.student.charles_borabon.mybatis.dao.Hotel">
         INSERT INTO hotels (hotel_name, address, city, state, country, phone) 
-        VALUES (#{hotelName}, #{address}, #{city}, #{state}, #{country}, #{phone});
-        <selectKey keyProperty="hotelId" resultType="int" order="AFTER">
+        VALUES (#{hotel_name}, #{address}, #{city}, #{state}, #{country}, #{phone});
+        <selectKey keyProperty="hotel_id" resultType="int" order="AFTER">
             SELECT LAST_INSERT_ID();
         </selectKey>
     </insert>
@@ -24,13 +24,13 @@
     <!-- Update an existing hotel -->
     <update id="updateHotel" parameterType="com.solvd.student.charles_borabon.mybatis.dao.Hotel">
         UPDATE hotels 
-        SET hotel_name = #{hotelName}, 
+        SET hotel_name = #{hotel_name}, 
             address = #{address}, 
             city = #{city}, 
             state = #{state}, 
             country = #{country}, 
             phone = #{phone} 
-        WHERE hotel_id = #{hotelId};
+        WHERE hotel_id = #{hotel_id};
     </update>
 
     <!-- Delete a hotel by ID -->
