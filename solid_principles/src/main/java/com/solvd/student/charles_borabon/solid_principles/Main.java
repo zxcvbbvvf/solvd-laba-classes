@@ -1,41 +1,45 @@
 package com.solvd.student.charles_borabon.solid_principles;
 
-import org.apache.ibatis.session.SqlSessionFactory;
-
 import com.solvd.student.charles_borabon.solid_principles.dao.Hotel;
 import com.solvd.student.charles_borabon.solid_principles.dao.HotelDAO;
-import com.solvd.student.charles_borabon.solid_principles.util.MyBatisUtil;
+import com.solvd.student.charles_borabon.solid_principles.design_patterns.AbstractDAOFactory;
+import com.solvd.student.charles_borabon.solid_principles.design_patterns.HotelBuilder;
+import com.solvd.student.charles_borabon.solid_principles.design_patterns.HotelDAOFactory;
+import com.solvd.student.charles_borabon.solid_principles.design_patterns.HotelDAOProxy;
+import com.solvd.student.charles_borabon.solid_principles.design_patterns.HotelFacade;
+import com.solvd.student.charles_borabon.solid_principles.design_patterns.HotelView;
 
 public class Main {
     public static void main(String[] args) {
-        // Initialize the MyBatis SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = MyBatisUtil.getSqlSessionFactory();
-
-        // Create an instance of HotelDAO
-        HotelDAO hotelDAO = new HotelDAO(sqlSessionFactory);
+        // Create a new HotelDAO object using the DAOFactory
+        AbstractDAOFactory factory = new HotelDAOFactory();
+        HotelDAO hotel_dao = factory.create();
+        HotelDAOProxy hotel_dao_proxy = new HotelDAOProxy(hotel_dao, hotel_dao.getSqlSessionFactory()); // Pass SqlSessionFactory as needed
+        HotelView hotel_view = new HotelView();
 
         try {
-            // Create a new hotel and insert it into the database
-            Hotel newHotel = new Hotel();
-            newHotel.setHotelName("Grand Plaza");
-            newHotel.setAddress("123 Main St");
-            newHotel.setCity("New York");
-            newHotel.setState("NY");
-            newHotel.setCountry("USA");
-            newHotel.setPhone("555-1234");
+            // Create a new hotel using builder and insert it into the database
+            Hotel new_hotel = new HotelBuilder()
+                .setHotelName("Hotel California")
+                .setAddress("1234 Hotel California St.")
+                .setCity("Los Angeles")
+                .setState("California")
+                .setCountry("USA")
+                .setPhone("123-456-7890")
+                .build();
 
-            hotelDAO.create(newHotel);
-            System.out.println("Inserted Hotel ID: " + newHotel.getHotelId());
+            HotelFacade hotel_facade = new HotelFacade(hotel_dao_proxy);
+            hotel_facade.createHotel(new_hotel);
+            System.out.println("Inserted Hotel ID: " + new_hotel.getHotelId());
 
             // Read the hotel by ID
-            Hotel hotelFromDB = hotelDAO.read(newHotel.getHotelId());
+            Hotel hotel_from_db = hotel_facade.getHotelById(new_hotel.getHotelId());
             
             // Debugging: Check if hotelFromDB is null
-            if (hotelFromDB == null) {
-                System.out.println("Hotel could not be found with ID: " + newHotel.getHotelId());
+            if (hotel_from_db == null) {
+                System.out.println("Hotel could not be found with ID: " + new_hotel.getHotelId());
             } else {
-                System.out.println("Hotel retrieved: " + hotelFromDB.getHotelName());
-                System.out.println("Hotel Phone: " + hotelFromDB.getPhone());
+                hotel_view.printHotelDetails(hotel_from_db);
             }
 
         } catch (Exception e) {

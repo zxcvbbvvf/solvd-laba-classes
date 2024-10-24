@@ -13,10 +13,14 @@ public class HotelDAO extends AbstractDAO<Hotel, Integer> {
         this.sqlSessionFactory = sqlSessionFactory;
     }
 
+    public SqlSessionFactory getSqlSessionFactory() {
+        return sqlSessionFactory;
+    }
+
     @Override
     public void create(Hotel hotel) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            session.insert("com.solvd.student.charles_borabon.mybatis.dao.HotelDAO.insertHotel", hotel);
+            session.insert("com.solvd.student.charles_borabon.solid_principles.dao.HotelDAO.insertHotel", hotel);
             session.commit();
         }
     }
@@ -24,14 +28,14 @@ public class HotelDAO extends AbstractDAO<Hotel, Integer> {
     @Override
     public Hotel read(Integer id) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            return session.selectOne("com.solvd.student.charles_borabon.mybatis.dao.HotelDAO.getHotelById", id);
+            return session.selectOne("com.solvd.student.charles_borabon.solid_principles.dao.HotelDAO.getHotelById", id);
         }
     }
 
     @Override
     public void update(Hotel hotel) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            session.update("com.solvd.student.charles_borabon.mybatis.dao.HotelDAO.updateHotel", hotel);
+            session.update("com.solvd.student.charles_borabon.solid_principles.dao.HotelDAO.updateHotel", hotel);
             session.commit();
         }
     }
@@ -39,7 +43,7 @@ public class HotelDAO extends AbstractDAO<Hotel, Integer> {
     @Override
     public void delete(Integer id) {
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            session.delete("com.solvd.student.charles_borabon.mybatis.dao.HotelDAO.deleteHotel", id);
+            session.delete("com.solvd.student.charles_borabon.solid_principles.dao.HotelDAO.deleteHotel", id);
             session.commit();
         }
     }
@@ -47,7 +51,7 @@ public class HotelDAO extends AbstractDAO<Hotel, Integer> {
     @Override
     public List<Hotel> getAll() {
         try (SqlSession session = sqlSessionFactory.openSession()) {
-            return session.selectList("com.solvd.student.charles_borabon.mybatis.dao.HotelDAO.getAllHotels");
+            return session.selectList("com.solvd.student.charles_borabon.solid_principles.dao.HotelDAO.getAllHotels");
         }
     }
 }
