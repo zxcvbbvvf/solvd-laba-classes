@@ -1,4 +1,5 @@
 {
-    "name": "test-repo",
-    "description": "Updated description"
+    "name": "updated-repo-name",
+    "description": "Updated description",
+    "private": true
 }

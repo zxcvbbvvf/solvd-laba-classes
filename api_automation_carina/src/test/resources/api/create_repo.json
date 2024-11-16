@@ -1,5 +1,13 @@
 {
-    "name": "test-repo",
-    "description": "This is a test repository",
-    "private": false
+    "method": "POST",
+    "url": "${baseUrl}/user/repos",
+    "headers": {
+        "Authorization": "Bearer ${token}",
+        "Content-Type": "application/json"
+    },
+    "body": {
+        "name": "test-repo",
+        "description": "This is a test repo",
+        "private": false
+    }
 }
