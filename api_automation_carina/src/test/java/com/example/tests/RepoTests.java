@@ -1,5 +1,10 @@
 package com.example.tests;
 
-public class RepoTests {
-    
+import com.example.api.*;
+import com.zebrunner.carina.core.IAbstractTest;
+import io.restassured.response.Response;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+public class RepoTests implements IAbstractTest {
+    @Test
 }
