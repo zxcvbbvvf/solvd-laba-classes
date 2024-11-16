@@ -7,7 +7,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>21</maven.compiler.release>
-        <exec.mainClass>com.solvd.student.charles_borabon.api_automation_carina.Api_automation_carina</exec.mainClass>
+        <exec.mainClass>com.solvd.student.charles_borabon.api_automation_carina.Main</exec.mainClass>
     </properties>
 
     <dependencies>
