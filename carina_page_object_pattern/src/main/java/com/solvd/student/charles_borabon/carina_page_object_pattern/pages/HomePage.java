@@ -2,57 +2,54 @@ package com.solvd.student.charles_borabon.carina_page_object_pattern.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
     private WebDriver driver;
 
-    @FindBy(linkText = "Sign In")
-    private WebElement signInLink;
-
-    @FindBy(linkText = "Create an Account")
-    private WebElement createAccountLink;
-
-    @FindBy(xpath = "//input[@type='text']")
-    private WebElement searchInput;
-
-    @FindBy(xpath = "//button[@type='submit']")
-    private WebElement searchButton;
-    
+    // Locators
+    private By logo = By.cssSelector(".logo");
+    private By navBar = By.id("store.menu");
+    private By searchBar = By.id("search");
+    private By searchButton = By.cssSelector("button.action.search");
+    private By signInLink = By.linkText("Sign In");
+    private By registrationLink = By.linkText("Create an Account");
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
     }
 
-    public void navigateToSignIn() {
-        signInLink.click();
+    public boolean isLogoDisplayed() {
+        return driver.findElement(logo).isDisplayed();
     }
 
-    public void navigateToCreateAccount() {
-        createAccountLink.click();
+    public boolean isNavigationBarDisplayed() {
+        return driver.findElement(navBar).isDisplayed();
     }
 
-    public void searchProduct(String query) {
-        searchInput.sendKeys(query);
-        searchButton.click();
+    public RegistrationPage navigateToRegistrationPage() {
+        driver.findElement(registrationLink).click();
+        return new RegistrationPage(driver);
     }
 
-    public boolean isCartLinkVisible() {
-        return driver.findElement(By.linkText("My Cart")).isDisplayed();
+    public LoginPage navigateToLoginPage() {
+        driver.findElement(signInLink).click();
+        return new LoginPage(driver);
     }
 
-    public boolean isWhatsNewLinkVisible() {
-        return driver.findElement(By.linkText("What's New")).isDisplayed();
+    public SearchResultsPage searchForProduct(String productName) {
+        driver.findElement(searchBar).sendKeys(productName);
+        driver.findElement(searchButton).click();
+        return new SearchResultsPage(driver);
     }
 
-    public boolean isSearchBarVisible() {
-        try {
-            return searchInput.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+    public CartPage navigateToCart() {
+        driver.findElement(By.cssSelector(".showcart")).click();
+        return new CartPage(driver);
+    }
+
+    public CheckoutPage navigateToCheckout() {
+        navigateToCart();
+        driver.findElement(By.cssSelector("button.action.primary.checkout")).click();
+        return new CheckoutPage(driver);
     }
 }
