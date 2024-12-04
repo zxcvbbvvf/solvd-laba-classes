@@ -22,6 +22,6 @@ public class LoginPage {
     }
 
     public boolean isLoginSuccessful() {
-        return driver.findElement(By.cssSelector(".welcome-msg")).isDisplayed();
+        return driver.findElement(By.cssSelector(".logged-in")).isDisplayed();
     }
 }
